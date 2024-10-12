@@ -25,4 +25,22 @@ Environment:
 
 --*/
 
+import menv;
+from menv import setupEnv, group;
 
+function build() {
+    var allGroup;
+    var entries;
+    var tools;
+
+    tools = setupEnv();
+    entries = [
+        "lib:test_apps",
+        "images:"
+    ];
+
+    allGroup = group("all", entries);
+    allGroup[0].default = true;
+    entries = allGroup + tools;
+    return entries;
+}
